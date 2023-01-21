@@ -1,0 +1,29 @@
+server:
+  port: 9090
+
+spring:
+  profiles:
+    active: local
+
+  # DB Connection ??
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jwt
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  # JPA ??
+  jpa:
+    hibernate:
+      ddl-auto: create #create : ?????? ?? ??? ???? drop??, ?? ??
+    properties:
+      hibernate:
+        # show_sql: true   #System.out? ?????? ?? SQL? ??
+        format_sql: true
+        # default_batch_fetch_size: 500 #??, in (, , , ,) ? ??, 100 ~ 1000
+        # use_sql_comments: true # querydsl - jpql parameter
+
+logging:
+  level:
+    org.hibernate.SQL: debug    # Logger? ?? ?????? ?? SQL? ??
+    # org.hibernate.type: trace # SQL ?? ????? ??? ???.
