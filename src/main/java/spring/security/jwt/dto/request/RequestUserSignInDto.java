@@ -1,4 +1,4 @@
-package spring.security.jwt.dto;
+package spring.security.jwt.dto.request;
 
 import lombok.Getter;
 import lombok.ToString;

@@ -1,4 +1,4 @@
-package spring.security.jwt.init;
+package spring.security.jwt.global.init;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import spring.security.jwt.config.auth.PrincipalDetail;
-import spring.security.jwt.dto.RequestUserSignInDto;
+import spring.security.jwt.dto.request.RequestUserSignInDto;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -36,7 +36,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         log.info("/login 요청됨, JwtAuthenticationFilter 실행");
-
 
         try {
             // 1. username, password 받아서

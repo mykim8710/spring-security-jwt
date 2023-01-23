@@ -1,4 +1,4 @@
-package spring.security.jwt.config;
+package spring.security.jwt.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.web.filter.CorsFilter;
 import spring.security.jwt.config.jwt.JwtAuthenticationFilter;
 import spring.security.jwt.config.jwt.JwtAuthorizationFilter;
@@ -69,6 +71,13 @@ public class SecurityConfig {
                 // token => 유효시간이 있음
 
 
+
+        httpSecurity
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+        //        .authenticationEntryPoint(authenticationEntryPoint()) //filter단에서 exception
+        ;
+
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/api/v1/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
@@ -82,6 +91,16 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
+
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return new CustomAuthenticationEntryPoint("/");
     }
 
 }

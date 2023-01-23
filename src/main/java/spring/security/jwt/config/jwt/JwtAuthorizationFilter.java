@@ -40,9 +40,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        //super.doFilterInternal(request, response, chain);
-        System.out.println("do filter international");
-
         // jwt 토큰을 검증해서 정상적이 사용자인지 확인
         String jwtHeader = request.getHeader(JwtProperties.HEADER_STRING);
 
