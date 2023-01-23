@@ -1,5 +1,6 @@
 package spring.security.jwt.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.CorsFilter;
 import spring.security.jwt.config.jwt.JwtAuthenticationFilter;
+import spring.security.jwt.config.jwt.JwtAuthorizationFilter;
+import spring.security.jwt.repository.UserRepository;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,6 +26,8 @@ import spring.security.jwt.config.jwt.JwtAuthenticationFilter;
 public class SecurityConfig {
     private final CorsFilter corsFilter;
     private final AuthenticationConfiguration authenticationConfiguration;
+    private final ObjectMapper objectMapper;
+    private final UserRepository userRepository;
 
 
     // user password encoder 빈등록
@@ -46,13 +51,12 @@ public class SecurityConfig {
                 .csrf()
                 .disable();
 
-        AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
-        System.out.println("authenticationManager = " + authenticationManager);
-
 
         httpSecurity
                 .addFilter(corsFilter) // 모든 요청은 이 필터를 탄다 : cors정책에서 벗어나라
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()));  // AuthenticationManager
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))  // AuthenticationManager
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), userRepository));
+
 
         httpSecurity
                 .sessionManagement()

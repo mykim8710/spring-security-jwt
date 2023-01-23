@@ -38,17 +38,17 @@ public class InitUserInsert {
                        User.builder()
                                .username("user")
                                .password(pe.encode("1234"))
-                               .roles("USER")
+                               .roles("ROLE_USER")
                                .build(),
                        User.builder()
                                .username("manager")
                                .password(pe.encode("1234"))
-                               .roles("MANAGER,USER")
+                               .roles("ROLE_MANAGER,ROLE_USER")
                                .build(),
                        User.builder()
                                .username("admin")
                                .password(pe.encode("1234"))
-                               .roles("ADMIN,MANAGER,USER")
+                               .roles("ROLE_ADMIN,ROLE_MANAGER,ROLE_USER")
                                .build()
                )
             );

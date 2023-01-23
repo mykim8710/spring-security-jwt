@@ -1,10 +1,7 @@
 package spring.security.jwt.domain;
 
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "USERS")
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +24,7 @@ public class User {
 
     public List<String> getRoleList() {
         if(this.roles.length() > 0) {
-            return Arrays.asList(this.roles.split("."));
+            return Arrays.asList(this.roles.split(","));
         }
 
         return new ArrayList<>();
