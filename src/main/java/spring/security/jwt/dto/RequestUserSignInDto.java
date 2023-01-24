@@ -1,7 +1,9 @@
-package spring.security.jwt.dto.request;
+package spring.security.jwt.dto;
 
 import lombok.Getter;
 import lombok.ToString;
+
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @ToString

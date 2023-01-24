@@ -1,4 +1,4 @@
-package spring.security.jwt.config.jwt;
+package spring.security.jwt.config.security.jwt;
 
 public class JwtProperties {
     public static String SECRET_KEY = "mykimJwtTokenSecretKey"; // 우리 서버만 알고 있는 비밀값

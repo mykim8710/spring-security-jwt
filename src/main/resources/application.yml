@@ -5,25 +5,33 @@ spring:
   profiles:
     active: local
 
-  # DB Connection ??
+  # DB Connection
   datasource:
     url: jdbc:h2:tcp://localhost/~/jwt
     username: sa
     password:
     driver-class-name: org.h2.Driver
 
-  # JPA ??
+  # JPA
   jpa:
     hibernate:
-      ddl-auto: create #create : ?????? ?? ??? ???? drop??, ?? ??
+      ddl-auto: create
+      # ddl-auto: 'option'
+        # none : 아무것도 하지 않는다.
+        # create : 기존의 테이블이 있다면, 지우고 새로 만듬.
+        # create-drop : 테이블을 새로 만들고, 앱이 꺼지기 전에 지운다.
+        # update : Entity에서 추가된 필드를 테이블에 반영한다.(테이블 수정)
+        # validate : Entity와 테이블의 정합성이 맞는지 검증한다.(안맞으면 오류를 발생 : Application 종료)
+
     properties:
       hibernate:
-        # show_sql: true   #System.out? ?????? ?? SQL? ??
+        # show_sql: true   # System.out에 하이버네이트 실행 SQL을 남김
         format_sql: true
-        # default_batch_fetch_size: 500 #??, in (, , , ,) ? ??, 100 ~ 1000
+        # default_batch_fetch_size: 500 #설정, in (, , , ,) 의 개수, 100 ~ 1000
         # use_sql_comments: true # querydsl - jpql parameter
+
 
 logging:
   level:
-    org.hibernate.SQL: debug    # Logger? ?? ?????? ?? SQL? ??
-    # org.hibernate.type: trace # SQL ?? ????? ??? ???.
+    org.hibernate.SQL: debug    # Logger를 통해 하이버네이트 실행 SQL을 남김
+    # org.hibernate.type: trace # SQL 실행 파라미터를 로그로 남긴다.

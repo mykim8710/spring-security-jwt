@@ -1,4 +1,4 @@
-package spring.security.jwt.config.auth;
+package spring.security.jwt.config.security.principal;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

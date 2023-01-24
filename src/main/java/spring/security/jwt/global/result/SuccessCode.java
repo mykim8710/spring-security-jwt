@@ -8,6 +8,7 @@ import lombok.ToString;
 public enum SuccessCode {
     // Common
     COMMON(200, "", "OK"),
+    SIGN_IN(200, "", "sign in ok"),
 
 
 

@@ -1,4 +1,4 @@
-package spring.security.jwt.config.auth;
+package spring.security.jwt.config.security.principal;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
